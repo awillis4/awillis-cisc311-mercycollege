@@ -1,0 +1,144 @@
+import java.util.*;
+
+public class TestBirthDate {
+    public static String[]date=new String[0];
+	public static void main(String args[]) {
+		TestBirthDate test = new TestBirthDate();
+                String b="";
+		String[]date = new String[0]; 
+                date[0]="";
+		date[1] ="7,8,1979";
+		date[2] ="9,5,1973";
+		test.change2(date[0]);
+		test.change2(date[1]);
+		test.change2(date[2]);
+		b=date[1];
+		b=date[2];
+	}
+	public void change1(int i){
+		i = 10;
+	}
+	
+	public void change2(String b){
+		b = "22,2,1975";
+	}
+	
+	public void change3(String b){//String d="";
+            
+		b=date[1];
+	}
+}
+
+package Assignment_3;
+
+public class TestPoint {
+	public static void main(String args[]){
+		String p1 = "1,2,3";
+		String p2 = "0,0,0";
+		String d1 = p2;
+		p1="2,2,3";
+		String d2 = p2;	
+	}
+}
+
+/** Class for storing high scores in an array 
+ * in nondecreasing order
+ */
+import java.util.*;
+
+public class Scoreboard {
+	private int numEntries = 0; // number of entries
+	private final int[]board;  // array of game entries
+	/** constructs an empty scoreboard 
+	 * with the given capacity for storing entries */
+	public Scoreboard(int capacity) {
+		board = new int[capacity];
+	}
+	/** add a new score to the collection (if it is high enough) */
+	public void add(int e) {int newScore=0;
+		for(e=0;e<newScore;e++){if(newScore==e){newScore=e;}}
+                
+		// is the new entry e high enough to be added to the scoreboard? 
+		if(numEntries<board.length||newScore>board[numEntries-1]){
+			if (numEntries < board.length){   // no score drops from the board
+				numEntries++;
+			}
+			// shift any lower score rightward to make room for the new entry
+			int j = numEntries - 1;
+			while (j > 0 && board[j-1] < newScore) {
+				board[j] = board[j-1]; //shift from j-1 to j
+				j--;				   //decrement j
+			}
+			board[j] = e; // add new entry
+		}
+	}
+	/** removes and returns entry at index i from the board */
+	public void remove(int i) throws IndexOutOfBoundsException{
+		if (i < 0 || i >= numEntries) {
+			throw new IndexOutOfBoundsException ("Invalid index: " + i);
+		}
+		int temp = board[i];   // save the object to be removed
+		for (int j = i; j < numEntries-1; j++) {   // starting with the last entry
+			board[j] = board[j+1];   // move one cell to the left
+		board[numEntries-1] = 0;	 // null out the old last entry
+		numEntries--;
+		}
+		               // return the removed entry 
+	}
+	
+	
+	/** main method */
+	public static void main(String[] args) {
+		Scoreboard sb = new Scoreboard(10);
+                List GameEntry=new ArrayList();
+		GameEntry.add("Peter");sb.add(100);
+		System.out.println(Arrays.toString(sb.board));
+		GameEntry.add("Ella");sb.add(200);
+		System.out.println(Arrays.toString(sb.board));
+		GameEntry.add("David");sb.add(150);
+		System.out.println(Arrays.toString(sb.board));
+		GameEntry.remove("Peter");sb.remove(1); 
+		System.out.println(Arrays.toString(sb.board));
+		GameEntry.remove(0);sb.remove(10); // throw IndexOutOfBoundsException
+	}
+}
+
+
+
+import java.util.Scanner;
+
+public class RecursiveMemoJosephus {
+	public int josephus (int n, int k) { 
+		int[][] calculated = new int[n][k];
+		if (n == 1) {
+			return 1;
+		} 
+		// if josephus value is in memory already, return it directly
+		else if (calculated[n][k] != 0){
+			return calculated[n][k];
+		}
+		else {
+			int jvalue = (josephus(n-1, k) + k-1) % n + 1;
+			calculated[n][k] = jvalue;
+			return jvalue;
+		}
+	}
+	
+	public static void main(String arg[]) {
+		int n = 0;
+		int k = 0;
+		Scanner scan = new Scanner(System.in);
+		int rj = 0;
+		while (n <= 0) {
+			System.out.print("Enter how many people in the circle: ");
+			n = scan.nextInt();
+		}
+		
+		while (k <= 0) {
+			System.out.print("and kill which one: ");
+			k = scan.nextInt();
+		}
+		System.out.println(n + " people in the circle and kill " + k 
+				+ "th person, the survivor is " + rj);
+	}
+}
