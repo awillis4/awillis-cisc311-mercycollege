@@ -1,0 +1,156 @@
+solutions after 1 week of working on it and i needed internet access.
+
+technically, internet access is given for any programmer, so it should be there during exams.
+
+your templates did not include all the tools i needed to fix the problems,
+
+import java.util.*;import java.io.*;
+
+//make 2 lists of nums, merge the list, sort the nums.
+
+public class mergeLinkedList{
+    
+    public static int[]merge(int[]ac,int[]bd){
+    int[]newList=new int[ac.length+bd.length];
+    for(int i=0;i<ac.length;i++){newList[i]=ac[i];}
+    sort(newList);return newList;}
+
+public static void sort(int[]list){
+    for(int i=0;i<list.length-1;i++){int m=list[i];int mIndex=i;
+    for(int j=i+1;j<list.length;j++){if(list[j]<m){m=list[j];mIndex=j;}}
+    if(mIndex!=i){list[mIndex]=list[i];list[i]=m;}}}
+
+public static void main(String[]args)throws IOException{
+Scanner scan=new Scanner(System.in);int i=0;
+
+System.out.println("Enter list 1: ");
+int[]ac=new int[scan.nextInt()];for(i=0;i<ac.length;i++){ac[i]=scan.nextInt();}
+
+System.out.println("Enter list 2: ");
+int[]bd=new int[scan.nextInt()];for(i=0;i<bd.length;i++){bd[i]=scan.nextInt();}
+
+int[]newList=merge(ac,bd);System.out.println("The merged list: ");
+int[]newList=merge(ac,bd);for(int e:newList){System.out.println(" "+e);}}}
+
+//http://ecomputernotes.com/java/array/singly-linked-list
+//http://tutorials.jenkov.com/java-collections/sorting.html
+//https://knowm.org/convert-an-array-into-a-linkedlist-in-java/
+//https://github.com/jsquared21/Intro-to-Java-Programming/blob/master
+//https://stackoverflow.com/questions/189559/how-do-i-join-two-lists-in-java
+
+
+/*int e=30;List a=new List(e);List b=new List(e);List c=new List(e);
+
+System.out.println("Enter 10 nums for list a");e=scan.nextInt();
+System.out.println("Enter 10 nums for list b");e=scan.nextInt();
+
+System.out.print(a);System.out.print(b);}}*/
+
+import java.util.*;
+
+//prompt user for a singly linked stack of nums.
+
+public class findMax{
+
+/*private findMax<T>fm=new findMax<>();
+
+public findMax();
+
+public int size(){return fm.size();}
+public boolean isEmpty(){return fm.isEmpty();}
+public T top(){return fm.first();}
+public void push(T e){fm.addFirst(e);}
+public T pull(){return fm.removeFirst();}
+public String toString(){return fm.String;}*/
+    
+private static final int c=1000;int[]a=new int[c];int t=-1;
+int[]m=new int[c];int[]n=new int[c];
+
+public static Stack<Integer>min=new Stack<>();
+public static Stack<Integer>max=new Stack<>();
+//public findMax(){min=new Stack<Integer>();max=new Stack<Integer>();}
+
+public int min(){
+    if(min.isEmpty()){return Integer.MAX_VALUE;}
+    else{return min.peek();}}
+public int max(){
+    if(max.isEmpty()){return Integer.MIN_VALUE;}
+    else{return max.peek();}}
+
+public void push(int p){
+    if(t<c-1){t++;a[t]=p;}
+    else{System.out.println("Stack Overflow");}
+    if(p<=min()){min.push(p);}if(p>=max()){max.push(p);}}
+
+//public int pop(){int tmp=(int)min.getFirst();min.removeFirst();return tmp;}
+    
+public void pull(){
+    if(t>0){t--;}else{System.out.println("Stack Underflow");}}
+
+public void print(){
+    if(t>=0){System.out.println("Elements in the stack :");
+    for(int i=0;i<=t;i++){System.out.println(a[i]);}}}
+
+public static void main(String[]args){
+    
+    Stack<Integer>s=new Stack();Scanner scan=new Scanner(System.in);
+    
+    int n=scan.nextInt();int e=0;
+    
+    while(n-->0){int[]c=new int[scan.nextInt()];
+    if(c[n]==1){int[]x=new int[scan.nextInt()];if(s.isEmpty()){s.push(x[n]);}
+    else{int y=s.peek();s.push(Math.max(x[n],y));}}
+    
+    if(c[n]==2){if(!s.isEmpty()){s.pop();}
+    if(c[n]==3){System.out.println(s.peek());}}}} }
+             
+
+//https://stackoverflow.com/questions/7134129/stack-with-find-min-find-max-more-efficient-than-on
+//https://codereview.stackexchange.com/questions/157233/finding-the-maximum-element-of-a-stack
+//https://coderanch.com/t/591069/java/Find-max-element-Stack
+
+import java.util.*;
+
+//promt user to enter nums into a que array, find the sum, find the average, find the 3 num rolling avg.
+
+/*public class movingAverage{public static void main(String[]args){Scanner scan=new Scanner(System.in);
+
+int i=0;int p=30;int[]d=new int[p];int sum=0;int sum2=0;int av=0;int avg=0;int c=0;int m=0;
+
+System.out.println("enter an int<30");p=scan.nextInt();c=p;
+System.out.println("enter an int then press enter p times");for(i=0;i<p;i++){p=scan.nextInt();}
+
+for(i=0;i<p;i++){sum+=d[i];}System.out.println("the sum is"+sum);
+avg=sum/c;System.out.println("the average is"+avg);
+for(i=3;i<p;i++){i=m;for(m=0;m<i-3;m++){sum2+=d[i];}}av=sum2/c;
+System.out.println("the rolling average is"+av);
+
+}}*/
+
+public class movingAverage{
+
+private final Queue<Float>window=new LinkedList<Float>();
+private int period;private float sum;
+
+public movingAverage(int period){this.period=period;}
+public void newNum(float num){sum+=num;window.add(num);
+if(window.size()>period){sum-=window.remove();}}
+public float getAvg(){if(window.isEmpty()){return sum/window.size();}return 0;}
+
+public static void main(String[]args){Scanner scan=new Scanner(System.in);
+int p=30;int q=0;int r=0;float[]data=new float[p];int[]winsize=new int[p];
+
+System.out.println("Enter number datapoints, enter, window sizes, enter.");
+q=scan.nextInt();r=scan.nextInt();
+
+System.out.println("enter each data point then press enter now.");
+for(p=0;p<q;p++){data[p]=scan.nextFloat();}
+System.out.println("now enter the window sizes.");
+for(p=0;p<r;p++){winsize[p]=scan.nextInt();}
+
+for(int winsiz:winsize){movingAverage mama=new movingAverage(winsiz);
+for(float x:data){mama.newNum(x);System.out.println("nexnum= "+x+", SMA= "+mama.getAvg());}        
+System.out.println();}}}
+
+//https://rosettacode.org/wiki/Averages/Simple_moving_average#Java 
+// was the only code i could find that does that.
