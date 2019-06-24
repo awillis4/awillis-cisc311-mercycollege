@@ -29,7 +29,7 @@ while(min2<max);}
 
  //1.7
  // Ask the user to enter an integer n (n >= 1).
- //Write a program that calculates 1! + 2! + 3! + 4! + â€¦ + n!
+ //Write a program that calculates 1! + 2! + 3! + 4! + … + n!
  //using a for loop, while loop, and a do loop
  
   public void factorial(){
